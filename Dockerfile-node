@@ -3,7 +3,9 @@ FROM node:18.18.1-alpine3.17
 WORKDIR /usr/src/app
 COPY . ./
 RUN cd client/ && yarn run build
-COPY ./client/build ./server/public
+RUN cd client/ && cp -r build/. ../server/public
+# RUN cd client/ && ls build/*
+# COPY ./client/build ./server/public
 EXPOSE 4001
 WORKDIR /usr/src/app/server
 RUN yarn cache clean && yarn --update-checksums
