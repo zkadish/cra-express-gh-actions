@@ -4,8 +4,6 @@ WORKDIR /usr/src/app
 COPY . ./
 RUN cd client/ && yarn && yarn run build
 RUN cd client/ && cp -r build/. ../server/public
-# RUN cd client/ && ls build/*
-# COPY ./client/build ./server/public
 EXPOSE 4001
 WORKDIR /usr/src/app/server
 RUN yarn cache clean && yarn --update-checksums
