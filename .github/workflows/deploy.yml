@@ -1,0 +1,71 @@
+name: build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.0
+      - name: Use Node.js 18.18.1
+        uses: actions/setup-node@v3.8.1
+        with:
+          node-version: "18.18.1"
+      - name: Install yarn and run unittest
+        run: |
+          yarn
+          yarn test
+        env:
+          CI: true
+      - name: Publish to Github Packages Registry
+        uses: elgohr/Publish-Docker-Github-Action@v5
+        with:
+          name: zkadish/test/cra-express-node
+          # username: ${{ github.actor }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: ghcr.io
+          dockerfile: Dockerfile-node
+          tags: cra-express-node
+  # deploy-cra-github-actions:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Deploy api to DigitalOcean Droplet
+  #       uses: appleboy/ssh-action@v1.0.0
+  #       env:
+  #         GITHUB_USERNAME: ${{ secrets.USERNAME }}
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #       with:
+  #         host: ${{ secrets.CRA_HOST }} # digitalocean ip address
+  #         username: root
+  #         key: ${{ secrets.DO_API_KEY }} # private ssh key of the droplet
+  #         port: 22
+  #         envs: GITHUB_USERNAME, GITHUB_TOKEN
+  #         script: |
+  #           echo "testing..."
+  #           docker stop $(docker ps -a -q)
+  #           docker rm $(docker ps -a -q)
+  #           docker login docker.pkg.github.com -u $GITHUB_USERNAME -p $GITHUB_TOKEN
+  #           docker pull docker.pkg.github.com/zkadish/create-react-app-github-actions/cra-test-github:cra-github-actions
+  #           docker run -dit -p 81:80 docker.pkg.github.com/zkadish/create-react-app-github-actions/cra-test-github:cra-github-actions
+
+  # - name: Deploy package to digitalocean
+  #   uses: appleboy/ssh-action@master
+  #   env:
+  #       GITHUB_USERNAME: ${{ secrets.GITHUB_USERNAME }}
+  #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #   with:
+  #     host: ${{ secrets.HOST }}
+  #     username: ${{ secrets.USERNAME }}
+  #     password: ${{ secrets.PASSWORD }}
+  #     port: ${{ secrets.PORT }}
+  #     envs: GITHUB_USERNAME, GITHUB_TOKEN
+  #     script: |
+  #       docker stop $(docker ps -a -q)
+  #       docker login docker.pkg.github.com -u $GITHUB_USERNAME -p $GITHUB_TOKEN
+  #       docker pull docker.pkg.github.com/my_github_username/my_repository_name/my_image_name:latest
+  #       docker run -dit -p 80:80 docker.pkg.github.com/my_github_username/my_repository_name/my_image_name:latest

@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+    nodeserver:
+        build:
+            context: .
+            dockerfile: Dockerfile-node
+        ports:
+            - "4001:3001"
+    nginx:
+        restart: always
+        build:
+            context: .
+            dockerfile: Dockerfile-nginx
+        ports:
+            - "81:80"
