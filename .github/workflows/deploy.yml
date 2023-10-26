@@ -44,7 +44,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.1.0
       - name: Deploy api to DigitalOcean Droplet
         uses: appleboy/ssh-action@v1.0.0
         env:
@@ -58,6 +57,7 @@ jobs:
           envs: GITHUB_USERNAME, GITHUB_TOKEN
           script: |
             echo "testing..."
+            git clone git@github.com:zkadish/cra-express-gh-actions.git
             docker stop $(docker ps -a -q)
             docker rm $(docker ps -a -q)
             docker login docker.pkg.github.com -u $GITHUB_USERNAME -p $GITHUB_TOKEN
