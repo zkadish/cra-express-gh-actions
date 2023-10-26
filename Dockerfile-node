@@ -2,7 +2,7 @@ FROM node:18.18.1-alpine3.17
 
 WORKDIR /usr/src/app
 COPY . ./
-RUN cd client/ && yarn run build
+RUN cd client/ && yarn && yarn run build
 RUN cd client/ && cp -r build/. ../server/public
 # RUN cd client/ && ls build/*
 # COPY ./client/build ./server/public
