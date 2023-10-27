@@ -47,3 +47,7 @@
 - https://medium.com/swlh/how-to-deploy-your-application-to-digital-ocean-using-github-actions-and-save-up-on-ci-cd-costs-74b7315facc2
 - https://blog.nodeswat.com/set-up-a-secure-node-js-web-application-9256b8790f11
 
+## Useful Docker commands
+
+- https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes
+  
