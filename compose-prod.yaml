@@ -1,6 +1,6 @@
 services:
   node-server:
-    image: cra-express-node:dev
+    image: ghcr.io/zkadish/cra-express-node:latest
     deploy:
       mode: global
       restart_policy:
@@ -9,7 +9,7 @@ services:
         max_attempts: 3
         window: 120s
   nginx-server:
-    image: nginx-proxy:dev
+    image: ghcr.io/zkadish/nginx-proxy:latest
     ports:
       - "81:80"
     deploy:
