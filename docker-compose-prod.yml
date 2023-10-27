@@ -1,13 +1,15 @@
 version: "3.8"
 services:
     nodeserver:
-        build:
-            image: cra-express-node
+        build: 'https://github.com/zkadish/cra-express-gh-actions'
+            # image: cra-express-node
+            # image: https://github.com/zkadish/cra-express-gh-actions
         ports:
             - "4001:3001"
-    nginx:
-        restart: always
-        build:
-            image: cra-express-nginx
-        ports:
-            - "81:80"
+    # nginx:
+    #     restart: always
+    #     build:
+    #         context: .
+    #         dockerfile: Dockerfile-nginx
+    #     ports:
+    #         - "81:80"
