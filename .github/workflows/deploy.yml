@@ -23,23 +23,23 @@ jobs:
       - name: Publish Node image to Github Packages Registry
         uses: elgohr/Publish-Docker-Github-Action@v5
         with:
-          name: zkadish/cra-express-gh-actions/cra-express-node
+          name: zkadish/cra-express-node
           # username: ${{ github.actor }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
           dockerfile: Dockerfile-node
-          tags: cra-express-node
+          tags: latest
       - name: Publish nginx image to Github Packages Registry
         uses: elgohr/Publish-Docker-Github-Action@v5
         with:
-          name: zkadish/cra-express-gh-actions/cra-express-nginx
+          name: zkadish/cra-express-nginx
           # username: ${{ github.actor }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
           dockerfile: Dockerfile-nginx
-          tags: cra-express-nginx
+          tags: latest
   deploy-cra-github-actions:
     needs: build
     runs-on: ubuntu-latest
