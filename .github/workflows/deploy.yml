@@ -68,7 +68,7 @@ jobs:
             cd cra-express-gh-actions/
             pwd
             docker compose -f compose-prod.yaml up --build --detach
-            docker compose restart --detach
+            docker compose -f compose-prod.yaml restart
   #           docker run -dit -p 81:80 docker.pkg.github.com/zkadish/create-react-app-github-actions/cra-test-github:cra-github-actions
 
   # - name: Deploy package to digitalocean
