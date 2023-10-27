@@ -1,0 +1,23 @@
+services:
+  node-server:
+    image: cra-express-nginx
+    ports:
+      - "4001:3001"
+    deploy:
+      mode: global
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+  nginx-server:
+    image: cra-express-nginx
+    ports:
+      - "81:80"
+    deploy:
+      mode: global
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s

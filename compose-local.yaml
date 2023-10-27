@@ -1,0 +1,14 @@
+services:
+  node-server:
+    build:
+      context: .
+      dockerfile: Dockerfile-node
+    ports:
+      - "4001:3001"
+  nginx-server:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile-nginx
+    ports:
+      - "81:80"

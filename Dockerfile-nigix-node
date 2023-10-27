@@ -2,15 +2,24 @@ FROM node:18.18.1-alpine3.17 as NodeImage
 
 WORKDIR /usr/src/app
 COPY . ./
-RUN cd client/ && yarn && yarn run build
-RUN cd client/ && cp -r build/. ../server/public
-# EXPOSE 4001
-WORKDIR /usr/src/app/server
-RUN yarn cache clean && yarn --update-checksums
-# CMD ["yarn", "start"]
+WORKDIR /usr/src/app/client
+RUN yarn && yarn run build
+WORKDIR /usr/src/app
+RUN cp -r client/build/. server/public
+# WORKDIR /usr/src/app/server
+# RUN yarn
+# RUN yarn cache clean && yarn --update-checksums
+
 
 FROM nginx:1.24.0-alpine3.17
-COPY --from=NodeImage
+COPY --from=NodeImage /usr/src/app /usr/src/app
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+# TODO: install node@latest
+# WORKDIR /usr/src/app/server
+# RUN yarn
+# RUN yarn cache clean && yarn --update-checksums
+# EXPOSE 4001
 EXPOSE 81
+# TODO: use an exacutable script to start node and nginx
+# CMD ["yarn", "start"]
 CMD ["nginx", "-g", "daemon off;"]
