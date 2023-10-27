@@ -12,7 +12,7 @@ services:
       restart_policy:
         condition: any
         delay: 5s
-        max_attempts: 3
+        # max_attempts: 3
         window: 120s
   nginx-server:
     image: ghcr.io/zkadish/cra-express-gh-actions/nginx-node-proxy:latest
@@ -27,5 +27,5 @@ services:
       restart_policy:
         condition: any
         delay: 5s
-        max_attempts: 3
+        # max_attempts: 3
         window: 120s
