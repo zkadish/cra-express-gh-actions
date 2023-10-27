@@ -1,8 +1,6 @@
 # Development
 
-## Building and Running individual Docker files locally without
-
-### Build and run the cra express node server image
+## Build and run the cra express node server image
 
 - $ npm run build
 - $ docker build -f Dockerfile-node -t cra-express-node:dev .
@@ -29,10 +27,23 @@
 
 - $ ssh root@137.184.6.194
 
-## tutorial resources
-
-- https://ashwin9798.medium.com/nginx-with-docker-and-node-js-a-beginners-guide-434fe1216b6b
 
 ## Dockerfile and docker compose.yaml command reference
 
 - https://docs.docker.com/engine/reference/builder/
+
+## tutorial resources
+
+- https://ashwin9798.medium.com/nginx-with-docker-and-node-js-a-beginners-guide-434fe1216b6b
+
+- use the following tutorial to connect github to digitalocean with ssh
+- https://medium.com/swlh/how-to-deploy-your-application-to-digital-ocean-using-github-actions-and-save-up-on-ci-cd-costs-74b7315facc2
+
+- use to install docker on droplet
+- https://blog.logrocket.com/zero-downtime-deploys-with-digitalocean-github-and-docker/
+
+- https://devpress.csdn.net/cicd/62ec1cc319c509286f416470.html#devmenu6
+- https://blog.logrocket.com/zero-downtime-deploys-with-digitalocean-github-and-docker/
+- https://medium.com/swlh/how-to-deploy-your-application-to-digital-ocean-using-github-actions-and-save-up-on-ci-cd-costs-74b7315facc2
+- https://blog.nodeswat.com/set-up-a-secure-node-js-web-application-9256b8790f11
+

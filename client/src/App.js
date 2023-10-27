@@ -30,7 +30,7 @@ function App() {
           Edit <code>src/App.js</code> and save to reload. <br />
           node server from localhost:4001...< br />
           { user }<br />
-          i need to commit something
+          I need to commit my brain!
         </p>
         <a
           className="App-link"
@@ -38,7 +38,9 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Learn React - Oh I'm crushing... :D<br />
+          And she's super Nice!!! and is a Developer!!!!<br />
+          WHHHHHHHHHHHHAT!!!!
         </a>
       </header>
     </div>
