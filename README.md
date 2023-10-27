@@ -2,10 +2,15 @@
 
 ## Building and Running individual Docker files locally without
 
+### Build and run the cra express node server image
+
 - $ npm run build
 - $ docker build -f Dockerfile-node -t cra-express-node:dev .
 - $ docker run -it -p 4001:3001 cra-express-node:dev
 - see container running at: http://localhost:4001
+
+### Build and run the nginx server image
+
 - $ docker build -f Dockerfile-nginx -t nginx-proxy:dev .
 - $ docker run -it -p 81:80 nginx-proxy:dev
 - see container running at: http://localhost:81
@@ -17,6 +22,8 @@
 - see node image running at: http://localhost:4001
 
 ## Building and Running compose-prod.yaml
+
+- $ docker compose -f compose-prod.yaml up --build
 
 ## ssh in to the project's digitalocean droplet
 

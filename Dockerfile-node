@@ -4,7 +4,9 @@ WORKDIR /usr/src/app
 COPY . ./
 RUN cd client/ && yarn && yarn run build
 RUN cd client/ && cp -r build/. ../server/public
-EXPOSE 4001
+# Do not allow node server to be exposed out side of
+# the docker network in deployed environments
+# EXPOSE 4001 
 WORKDIR /usr/src/app/server
 RUN yarn cache clean && yarn --update-checksums
 CMD ["yarn", "start"]
