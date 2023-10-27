@@ -11,8 +11,8 @@
 
 ### Build and run the nginx server image
 
-- $ docker build -f Dockerfile-nginx -t nginx-proxy:dev .
-- $ docker run -it -p 81:80 nginx-proxy:dev
+- $ docker build -f Dockerfile-nginx -t nginx-node-proxy:dev .
+- $ docker run -it -p 81:80 nginx-node-proxy:dev
 - see container running at: http://localhost:81
 
 ## Building and Running compose-locally.yaml locally
