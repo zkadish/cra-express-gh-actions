@@ -23,7 +23,7 @@ jobs:
       - name: Publish Node image to Github Packages Registry
         uses: elgohr/Publish-Docker-Github-Action@v5
         with:
-          name: zkadish/cra-express-node
+          name: zkadish/cra-express-gh-actions/cra-express-node
           # username: ${{ github.actor }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.GITHUB_TOKEN }}
@@ -33,7 +33,7 @@ jobs:
       - name: Publish nginx image to Github Packages Registry
         uses: elgohr/Publish-Docker-Github-Action@v5
         with:
-          name: zkadish/cra-express-nginx
+          name: zkadish/cra-express-gh-actions/cra-express-nginx
           # username: ${{ github.actor }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.GITHUB_TOKEN }}
@@ -56,14 +56,15 @@ jobs:
           port: 22
           envs: GITHUB_USERNAME, GITHUB_TOKEN
           script: |
-            echo "testing..."
+            echo "Delete previous of Repository"
+            rm -rf cra-express-gh-actions
             git clone git@github.com:zkadish/cra-express-gh-actions.git
             # docker stop $(docker ps -a)
             # docker rm $(docker ps -a)
             # docker rmi $(docker images -a)
             docker login docker.pkg.github.com -u $GITHUB_USERNAME -p $GITHUB_TOKEN
-            docker pull ghcr.io/zkadish/cra-express-node:latest
-            docker pull ghcr.io/zkadish/nginx-proxy:latest
+            docker pull ghcr.io/zkadish/cra-express-gh-actions/cra-express-node:latest
+            docker pull ghcr.io/zkadish/cra-express-gh-actions/cra-express-nginx:latest
   #           docker run -dit -p 81:80 docker.pkg.github.com/zkadish/create-react-app-github-actions/cra-test-github:cra-github-actions
 
   # - name: Deploy package to digitalocean
