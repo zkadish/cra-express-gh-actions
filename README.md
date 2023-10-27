@@ -3,11 +3,11 @@
 ## Building and Running individual Docker files locally without
 
 - $ npm run build
-- $ docker build -f Dockerfile-node -t cra-express-gh-actions-node:dev .
-- $ docker run -it -p 4001:3001 cra-express-gh-actions-node:dev
+- $ docker build -f Dockerfile-node -t cra-express-node:dev .
+- $ docker run -it -p 4001:3001 cra-express-node:dev
 - see container running at: http://localhost:4001
-- $ docker build -f Dockerfile-nginx -t cra-express-gh-actions-nginx:dev .
-- $ docker run -it -p 81:80 cra-express-gh-actions-nginx:dev
+- $ docker build -f Dockerfile-nginx -t nginx-proxy:dev .
+- $ docker run -it -p 81:80 nginx-proxy:dev
 - see container running at: http://localhost:81
 
 ## Building and Running compose-locally.yaml locally

@@ -58,8 +58,9 @@ jobs:
           script: |
             echo "testing..."
             git clone git@github.com:zkadish/cra-express-gh-actions.git
-            docker stop $(docker ps -a -q)
-            docker rm $(docker ps -a -q)
+            # docker stop $(docker ps -a)
+            # docker rm $(docker ps -a)
+            # docker rmi $(docker images -a)
             docker login docker.pkg.github.com -u $GITHUB_USERNAME -p $GITHUB_TOKEN
             docker pull ghcr.io/zkadish/cra-express-gh-actions/cra-express-nginx:cra-express-nginx
             docker pull ghcr.io/zkadish/cra-express-gh-actions/cra-express-node:cra-express-node
