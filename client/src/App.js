@@ -38,9 +38,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React - Oh I'm crushing... :D<br />
-          And she's super Nice!!! and is a Developer!!!!<br />
-          WHHHHHHHHHHHHAT!!!!
+          This should be a new seamless deploy!
         </a>
       </header>
     </div>
