@@ -17,7 +17,10 @@ jobs:
           node-version: "18.18.1"
       - name: Install yarn and run unittest
         run: |
+          cd client/
+          pwd
           yarn
+          yarn test
         env:
           CI: true
       - name: Publish Node image to Github Packages Registry
@@ -40,7 +43,7 @@ jobs:
           registry: ghcr.io
           dockerfile: Dockerfile-nginx
           tags: latest
-  deploy-cra-github-actions:
+  deploy-the-application-to-digital-ocean:
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -56,34 +59,16 @@ jobs:
           port: 22
           envs: GITHUB_USERNAME, GITHUB_TOKEN
           script: |
-            echo "Delete previous of Repository"
+            echo "Delete previous Repository and clone the latest version"
             rm -rf cra-express-gh-actions
             git clone git@github.com:zkadish/cra-express-gh-actions.git
-            # docker stop $(docker ps -a)
-            # docker rm $(docker ps -a)
+            echo "Remove all unused docker images"
             docker rmi $(docker images -a -q)
+            echo get the latest images for the application
             docker login docker.pkg.github.com -u $GITHUB_USERNAME -p $GITHUB_TOKEN
             docker pull ghcr.io/zkadish/cra-express-gh-actions/cra-express-node:latest
             docker pull ghcr.io/zkadish/cra-express-gh-actions/nginx-node-proxy:latest
             cd cra-express-gh-actions/
-            pwd
+            echo "Rebuild the containers"
             docker compose -f compose-prod.yaml up --build --detach
             # docker compose -f compose-prod.yaml restart
-  #           docker run -dit -p 81:80 docker.pkg.github.com/zkadish/create-react-app-github-actions/cra-test-github:cra-github-actions
-
-  # - name: Deploy package to digitalocean
-  #   uses: appleboy/ssh-action@master
-  #   env:
-  #       GITHUB_USERNAME: ${{ secrets.GITHUB_USERNAME }}
-  #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #   with:
-  #     host: ${{ secrets.HOST }}
-  #     username: ${{ secrets.USERNAME }}
-  #     password: ${{ secrets.PASSWORD }}
-  #     port: ${{ secrets.PORT }}
-  #     envs: GITHUB_USERNAME, GITHUB_TOKEN
-  #     script: |
-  #       docker stop $(docker ps -a -q)
-  #       docker login docker.pkg.github.com -u $GITHUB_USERNAME -p $GITHUB_TOKEN
-  #       docker pull docker.pkg.github.com/my_github_username/my_repository_name/my_image_name:latest
-  #       docker run -dit -p 80:80 docker.pkg.github.com/my_github_username/my_repository_name/my_image_name:latest
