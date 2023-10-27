@@ -38,7 +38,8 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          This should be a new seamless deploy!
+          This should be a new seamless deploy!<br />
+          Rolling updates! WooHoo!!!
         </a>
       </header>
     </div>
