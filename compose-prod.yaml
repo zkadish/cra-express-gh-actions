@@ -5,6 +5,10 @@ services:
     #   - "4001:3001"
     deploy:
       mode: global
+      update_config:
+        parallelism: 2
+        delay: 10s
+        order: stop-first
       restart_policy:
         condition: on-failure
         delay: 5s
@@ -16,6 +20,10 @@ services:
       - "81:80"
     deploy:
       mode: global
+      update_config:
+        parallelism: 2
+        delay: 10s
+        order: stop-first
       restart_policy:
         condition: on-failure
         delay: 5s
