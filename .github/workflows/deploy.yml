@@ -67,7 +67,7 @@ jobs:
             docker pull ghcr.io/zkadish/cra-express-gh-actions/nginx-node-proxy:latest
             cd cra-express-gh-actions/
             # docker compose -f compose-prod.yaml up --no-attach --build
-            docker compose -f compose-prod.yaml up --build --no-attach
+            docker compose -f compose-prod.yaml up --build --detach
   #           docker run -dit -p 81:80 docker.pkg.github.com/zkadish/create-react-app-github-actions/cra-test-github:cra-github-actions
 
   # - name: Deploy package to digitalocean
