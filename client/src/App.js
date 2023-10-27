@@ -39,7 +39,9 @@ function App() {
           rel="noopener noreferrer"
         >
           This should be a new seamless deploy!<br />
-          Rolling updates! WooHoo!!!
+          I do Need test Replicas and see if Rolling updates actually work! WooHoo!!!
+          Before the containers and services restart...
+          showing new changes!!!
         </a>
       </header>
     </div>
