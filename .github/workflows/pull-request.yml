@@ -3,7 +3,7 @@ name: Build the project and Run tests
 on: [pull_request]
 
 jobs:
-  build and test react client:
+  build-test-client:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,7 +19,7 @@ jobs:
           yarn
           yarn run build
           yarn test
-  build and test node server:
+  build-test-server:
     runs-on: ubuntu-latest
 
     steps:
