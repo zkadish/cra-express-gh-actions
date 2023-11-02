@@ -16,4 +16,4 @@ jobs:
         run: |
           cd server/
           yarn
-          yarn start
+          # yarn start
