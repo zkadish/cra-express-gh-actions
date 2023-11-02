@@ -42,6 +42,9 @@
 - use to install docker on droplet
 - https://blog.logrocket.com/zero-downtime-deploys-with-digitalocean-github-and-docker/
 
+- create a manual workflow/action
+- https://wttech.blog/blog/2021/how-to-push-docker-image-to-digitalocean-container-registry-using-github-actions/
+
 - https://devpress.csdn.net/cicd/62ec1cc319c509286f416470.html#devmenu6
 - https://blog.logrocket.com/zero-downtime-deploys-with-digitalocean-github-and-docker/
 - https://medium.com/swlh/how-to-deploy-your-application-to-digital-ocean-using-github-actions-and-save-up-on-ci-cd-costs-74b7315facc2
