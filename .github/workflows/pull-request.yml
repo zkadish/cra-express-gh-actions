@@ -3,7 +3,7 @@ name: Build the project and Run tests
 on: [pull_request]
 
 jobs:
-  test:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -12,8 +12,9 @@ jobs:
         uses: actions/setup-node@v3.8.1
         with:
           node-version: "18.18.1"
-      - name: Install yarn and run unittest
+      - name: Install yarn, build and run unittest
         run: |
           cd client/
           yarn
-          # yarn test
+          yarn run build
+          yarn test
