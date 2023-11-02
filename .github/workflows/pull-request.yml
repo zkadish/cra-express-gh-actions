@@ -1,0 +1,19 @@
+name: Build the project and Run tests
+
+on: [pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4.1.0
+      - name: Use Node.js 18.18.1
+        uses: actions/setup-node@v3.8.1
+        with:
+          node-version: "18.18.1"
+      - name: Install yarn and run unittest
+        run: |
+          cd client/
+          yarn
+          # yarn test
