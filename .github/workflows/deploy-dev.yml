@@ -1,4 +1,4 @@
-name: build
+name: build and publish to dev
 
 on:
   push:
