@@ -3,7 +3,7 @@ name: build
 on:
   push:
     branches:
-      - main
+      - develop
 
 jobs:
   build:
@@ -42,6 +42,7 @@ jobs:
           registry: ghcr.io
           dockerfile: Dockerfile-nginx
           tags: latest
+
   deploy-the-application-to-digital-ocean:
     needs: build
     runs-on: ubuntu-latest
