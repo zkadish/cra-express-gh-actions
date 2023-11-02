@@ -1,4 +1,4 @@
-name: Build and publish manually
+name: Manually Build and publish to QA
 
 on: [workflow_dispatch]
 
