@@ -38,8 +38,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Starting over again with more branches...<br />
-          adding a develop branch
+          learn react
         </a>
       </header>
     </div>
