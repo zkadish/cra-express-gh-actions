@@ -1,0 +1,71 @@
+name: Build and publish manually
+
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.0
+      - name: Use Node.js 18.18.1
+        uses: actions/setup-node@v3.8.1
+        with:
+          node-version: "18.18.1"
+      - name: Install yarn and run unittest
+        run: |
+          cd client/
+          yarn
+          # yarn test
+        env:
+          CI: true
+      - name: Publish Node image to Github Packages Registry
+        uses: elgohr/Publish-Docker-Github-Action@v5
+        with:
+          name: zkadish/cra-express-gh-actions/cra-express-node
+          # username: ${{ github.actor }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: ghcr.io
+          dockerfile: Dockerfile-node
+          tags: latest
+      - name: Publish nginx image to Github Packages Registry
+        uses: elgohr/Publish-Docker-Github-Action@v5
+        with:
+          name: zkadish/cra-express-gh-actions/nginx-node-proxy
+          # username: ${{ github.actor }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: ghcr.io
+          dockerfile: Dockerfile-nginx
+          tags: latest
+
+  deploy-the-application-to-digital-ocean:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy api to DigitalOcean Droplet
+        uses: appleboy/ssh-action@v1.0.0
+        env:
+          GITHUB_USERNAME: ${{ secrets.USERNAME }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          host: ${{ secrets.CRA_HOST }} # digitalocean ip address
+          username: root
+          key: ${{ secrets.DO_API_KEY }} # private ssh key of the droplet
+          port: 22
+          envs: GITHUB_USERNAME, GITHUB_TOKEN
+          script: |
+            echo "Delete previous Repository and clone the latest version"
+            rm -rf cra-express-gh-actions
+            git clone git@github.com:zkadish/cra-express-gh-actions.git
+            echo "Remove all unused docker images"
+            docker rmi $(docker images -a -q)
+            echo get the latest images for the application
+            docker login docker.pkg.github.com -u $GITHUB_USERNAME -p $GITHUB_TOKEN
+            docker pull ghcr.io/zkadish/cra-express-gh-actions/cra-express-node:latest
+            docker pull ghcr.io/zkadish/cra-express-gh-actions/nginx-node-proxy:latest
+            cd cra-express-gh-actions/
+            echo "Rebuild the containers"
+            docker compose -f compose-prod.yaml up --build --detach
+            # docker compose -f compose-prod.yaml restart
