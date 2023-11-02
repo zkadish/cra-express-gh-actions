@@ -38,12 +38,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          This should be a new seamless deploy!<br />
-          I do Need test Replicas and see if Rolling updates actually work!<br />
-          WooHoo!!!<br />
-          Before the containers and services restart...<br />
-          showing new changes!!!<br />
-          I'm going to need a bigger app to soon!
+          learn react
         </a>
       </header>
     </div>
