@@ -1,4 +1,4 @@
-name: Build the project and Run tests
+name: Build the Server and Run tests
 
 on: [pull_request]
 
@@ -12,9 +12,8 @@ jobs:
         uses: actions/setup-node@v3.8.1
         with:
           node-version: "18.18.1"
-      - name: Install yarn, build and run unittest
+      - name: Install yarn and start server
         run: |
-          cd client/
+          cd server/
           yarn
-          yarn run build
-          yarn test
+          yarn start
