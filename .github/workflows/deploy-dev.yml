@@ -15,12 +15,15 @@ jobs:
         uses: actions/setup-node@v3.8.1
         with:
           node-version: "18.18.1"
-      - name: Install yarn and run unittest
+      - name: Install yarn and run unit tests
         run: |
           cd client/
           yarn
+          yarn test
+      - name: Tag develop branch
+        run: |
           git branch --show-current
-          # yarn test
+          git tag -a develop-0.2.0 -m "develop-0.2.0"
         env:
           CI: true
         # with:
