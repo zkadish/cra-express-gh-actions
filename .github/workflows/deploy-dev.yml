@@ -23,8 +23,8 @@ jobs:
           yarn test
       - name: Tag develop branch
         run: |
-          git branch --show-current
           git tag -a develop-0.2.0 -m "develop-0.2.0"
+          git branch --show-current
         env:
           CI: true
         # with:
