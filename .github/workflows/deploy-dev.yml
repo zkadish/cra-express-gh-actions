@@ -24,7 +24,8 @@ jobs:
       - name: Tag develop branch
         run: |
           git branch --show-current
-          git tag -a develop-0.2.0 -m "develop-0.2.0"
+          npm pkg get version
+          git tag -a develop-0.3.0 -m "develop-0.3.0"
           git push origin --tags
         env:
           CI: true
