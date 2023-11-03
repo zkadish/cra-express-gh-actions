@@ -22,10 +22,11 @@ jobs:
           # yarn test
         env:
           CI: true
-        script: |
-          git branch --show-current
-          echo "tagging the current brach"
-          git tag -a develop-0.1.0 -m "develop-0.1.0"
+        with:
+          script: |
+            git branch --show-current
+            echo "tagging the current brach"
+            git tag -a develop-0.1.0 -m "develop-0.1.0"
       - name: Publish Node image to Github Packages Registry
         uses: elgohr/Publish-Docker-Github-Action@v5
         with:
