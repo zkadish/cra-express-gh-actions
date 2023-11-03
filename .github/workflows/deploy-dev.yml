@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.0
+      - uses: fregante/setup-git-user@v2
       - name: Use Node.js 18.18.1
         uses: actions/setup-node@v3.8.1
         with:
