@@ -29,6 +29,9 @@ jobs:
           npm version minor
           export VERSION=$(npm run version -s)
           echo $VERSION
+          git add .
+          git commit -m "bumping minor version"
+          git push
           # git tag -a develop-$VERSION -m "develop-$VERSION"
           # git push origin --tags
         env:
