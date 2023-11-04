@@ -16,8 +16,6 @@ jobs:
         uses: actions/setup-node@v3.8.1
         with:
           node-version: "18.18.1"
-          script: |
-            echo test
       - name: Install yarn and run unit tests
         run: |
           cd client/
@@ -30,8 +28,8 @@ jobs:
           npm version minor
           export VERSION=$(npm run version -s)
           echo $VERSION
-          git tag -a develop-$VERSION -m "develop-$VERSION"
-          git push origin --tags
+          # git tag -a develop-$VERSION -m "develop-$VERSION"
+          # git push origin --tags
         env:
           CI: true
         # with:
