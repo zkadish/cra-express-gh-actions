@@ -25,9 +25,9 @@ jobs:
         run: |
           git branch --show-current
           npm pkg get version
-          NEW_VERSION=npm version patch
-          echo $NEW_VERSION
-          git tag -a develop-0.3.0 -m "develop-0.3.0"
+          npm version minor
+          export VERSION=$(npm run version -s)
+          git tag -a develop-$VERSION -m "develop-$VERSION"
           git push origin --tags
         env:
           CI: true

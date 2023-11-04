@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
@@ -14,10 +14,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "version": "echo $npm_package_version",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "check-env": "node -e 'console.log(process.env)' | grep npm"
   },
   "eslintConfig": {
     "extends": [
