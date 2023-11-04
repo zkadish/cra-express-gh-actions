@@ -23,6 +23,7 @@ jobs:
           yarn test
       - name: Tag develop branch
         run: |
+          pwd
           git branch --show-current
           npm pkg get version
           npm version minor
