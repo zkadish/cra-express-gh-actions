@@ -16,9 +16,9 @@ jobs:
         uses: actions/setup-node@v3.8.1
         with:
           node-version: "18.18.1"
+          script: |
+            echo test
       - name: Install yarn and run unit tests
-        script: |
-          echo test
         run: |
           cd client/
           yarn
