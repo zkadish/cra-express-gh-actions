@@ -33,8 +33,8 @@ jobs:
           git commit -m "bumping minor version"
           git push
           git tag -a develop-$VERSION -m "develop-${VERSION}"
+          git push origin --tags
           # git tag -a develop-$VERSION -m "develop-$VERSION"
-          # git push origin --tags
         env:
           CI: true
         # with:
