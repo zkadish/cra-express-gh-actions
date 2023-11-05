@@ -34,9 +34,8 @@ jobs:
           git push
           git tag -a develop-$VERSION -m "develop-${VERSION}"
           git push origin --tags
-          # git tag -a develop-$VERSION -m "develop-$VERSION"
-        env:
-          CI: true
+        # env:
+        #   CI: true
         # with:
         #   script: |
         #     git branch --show-current
